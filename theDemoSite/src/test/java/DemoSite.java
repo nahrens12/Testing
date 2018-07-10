@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class DemoSite {
@@ -21,7 +24,7 @@ public class DemoSite {
     @After
     public void tearDown()
     {
-        //driver.quit();
+        driver.quit();
     }
 
     @Test
@@ -65,4 +68,5 @@ public class DemoSite {
 
     }
 
-    }
+
+}
