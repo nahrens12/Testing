@@ -5,14 +5,21 @@ import org.openqa.selenium.support.FindBy;
 
 public class Home {
 
-//@FindBy()
-//    private WebElement mouse;
-//Actions action = new Actions();
-//action.moveByOffset(10,10).perform();
-//
-//public Action(int x, int y){
-//
-//
-//
-//}
+
+
+    @FindBy(xpath = "//*[@id=\"ui-id-2\"]")
+    private WebElement tab2 ;
+
+    @FindBy(xpath = "//*[@id=\"ui-id-3\"]")
+    private WebElement tab3 ;
+
+
+    public void clickingOnTab()
+    {
+        tab2.click();
+        tab3.click();
+    }
+
+
+
 }
