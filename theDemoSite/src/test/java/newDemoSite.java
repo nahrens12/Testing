@@ -27,6 +27,7 @@ public class newDemoSite {
 
     @Before
     public void setUp() {
+        ExcelUtils.setExcelFile(Constant.Path_ExcelData + Constant.File_ExcelData, 0);
         System.setProperty("webdriver.chrome.driver", "C:/Development/web_driver/chromedriver.exe");
         driver = new ChromeDriver();
         reports = new ExtentReports("C:\\Users\\Admin\\IdeaProjects\\Testing\\Automated_Reports.html", true);
@@ -38,7 +39,7 @@ public class newDemoSite {
     @After
     public void tearDown () throws InterruptedException
     {
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         driver.quit();
         reports.endTest(test);
         reports.flush();
@@ -82,15 +83,29 @@ public class newDemoSite {
 
             AddUser addUser = PageFactory.initElements(driver, AddUser.class);
             addUser.searchFor(user, pass);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             test.log(LogStatus.INFO, "Adding new user");
 
 
             Login login = PageFactory.initElements(driver, Login.class);
             login.searchFor(user, pass);
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
             test.log(LogStatus.INFO, "Users have logged in");
             test.log(LogStatus.PASS, "Successful Login");
+
+            String title = driver.getTitle();
+            System.out.println(title);
+            String expected = "Login example page to test the PHP MySQL online system";
+
+            if (title.equals(expected)) {
+                test.log(LogStatus.PASS, "Successfully verified  Title of the page!!");
+                ExcelUtils.setCellData("Pass", i, 2);
+            }
+            else {
+                test.log(LogStatus.FAIL, "Failed to verify Title of the page");
+                ExcelUtils.setCellData("Fail", i, 2);
+            }
+
 
             assertEquals("**Successful Login**", driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/big/blockquote/blockquote/font/center/b")).getText());
         }
