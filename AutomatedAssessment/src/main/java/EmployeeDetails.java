@@ -46,31 +46,32 @@ public class EmployeeDetails {
     private WebElement submit;
 
 
-    public void creatingNewEmployee(String firstname, String middlename, String lastName, String employeeId, String location)
+    public void creatingNewEmployee(String firstname, String middlename, String lastName, String employeeId)
     {
         first.sendKeys(firstname);
             middle.sendKeys(middlename);
             last.sendKeys(lastName);
             id.sendKeys(employeeId);
-            loc.sendKeys(location);
-            loc.sendKeys(Keys.TAB);
+        loc.click();
+            loc.sendKeys(Keys.chord("l"));
+        loc.sendKeys(Keys.ENTER);
     }
 
 
     public void createNewEmployeeLogin()
     {
         createLogin.click();
-
     }
 
-    public void addNewEmployeeLogin(String username, String password, String confirmPassword){
+    public void addNewEmployeeLogin(String username, String password, String confirmPassword) throws InterruptedException{
         userName.sendKeys(username);
         status.sendKeys(Keys.TAB);
         passWord.sendKeys(password);
         confirmPassWord.sendKeys(confirmPassword);
         essRole.sendKeys(Keys.TAB);
         supervisorRole.sendKeys(Keys.TAB);
-        adminRole.sendKeys(Keys.TAB);
+        adminRole.sendKeys(Keys.chord("a"));
+        adminRole.sendKeys(Keys.ENTER);
     }
 
     public void saveEmployeeLogin()
